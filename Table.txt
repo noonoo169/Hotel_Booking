@@ -1,0 +1,7 @@
+HotelApp\migrations\0001_initial.py
+    - Create model Add_Employee
+    - Create model Add_Room
+    - Create model Authorregis
+    - Create model Offline_Booking
+    - Create model Online_Booking
+    - Create model Add_Salarys

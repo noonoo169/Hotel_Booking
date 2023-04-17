@@ -1,0 +1,2 @@
+python -m virtualenv -p C:\Users\NOO\AppData\Local\Programs\Python\Python39\python.exe env1
+
