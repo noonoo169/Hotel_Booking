@@ -27,13 +27,14 @@
  <!--************************************
 			login part start
 		*************************************-->
+     {% include 'message.html' %}
       <section id="slide">
         <div class="login_bg_Pic" style="background: url({%static 'Allfiles/photo/slider-5.jpg'%})">
           <div class="container">
             <div class="row">
               <div class="home-link text-center">
                 <p>
-                  <a href="{% url 'Home' %}">Home</a><i class="fas fa-angle-right"></i><a href="#">Login</a>
+                  <a href="{% url 'home' %}">Home</a><i class="fas fa-angle-right"></i><a href="#">Login</a>
                 </p>
               </div>
               <div class="login_info text-center">
@@ -43,11 +44,11 @@
                     <h4>Authority Login into your account</h4>
                   </div>
                 </div>
-                <form method="post" action="">
+                <form method="post" action="" target="_blank">  
                   {% csrf_token %}
                   <div class="col-lg-10">
                     <div class="login_email">
-                      <input type="email" name="Email" placeholder="Enter Email" required/>
+                      <input type="username" name="Email" placeholder="Enter Email" required/>
                     </div>
                   </div>
                   <div class="col-lg-10">
@@ -56,11 +57,8 @@
                     </div>
                   </div>
                   <div class="col-lg-10">
-                    <div class="checkbox1">
-                      <input type="checkbox" required/><label for="checkbox1">Keep me logged in</label>
-                    </div>
                     <div class="forget_pass">
-                      <a href="{% url 'Aothur_Fotpass' %}" class="">Forgot Password</a>
+                      <a href="{% url 'forgetPassword' %}" class="">Forgot Password</a>
                     </div>
                   </div>
                   <div class="col-lg-10">
@@ -73,7 +71,7 @@
                   <div class="register_btn">
                     <p>
                       Don't have an account?
-                      <a href="{% url 'Aothur_Reg' %}" class="">Register</a>
+                      <a href="{% url 'registerAccount' %}" class="">Register</a>
                     </p>
                   </div>
                 </div>
@@ -95,4 +93,11 @@
   <!--all plugin js-->
   <!--main js-->
    <script src="{%static 'Allfiles/Js/Script.js'%}"></script>
+   <script>
+    setTimeout(function(){
+      if ($('#msg').length > 0) {
+        $('#msg').remove();
+      }
+    }, 2000)
+  </script>
 </body>

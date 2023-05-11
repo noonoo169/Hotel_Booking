@@ -1,4 +1,4 @@
-{%extends 'admin/AdminAllinclude.html'%}
+{%extends 'admin/AdminIncludeAll.html'%}
 {% block title %}
  All Customers page
 {% endblock %}
@@ -20,7 +20,7 @@
                  </div>
                 <div class ="col-lg-6">
                     <div class="add_student_link">
-                        <a href="{% url 'Adminpage' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="{% url 'AddCustomer' %}">Add Customers</a>
+                        <a href="{% url 'adminHome' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="{% url 'AddCustomer' %}">Add Customers</a>
                      </div>
                  </div>
             </div>
@@ -56,30 +56,15 @@
                                                    <option value="angular">100</option>
                                                </select>
                                             </div>
-                                          <div class="form-group table_info_btn1" >
-                                                <select class="form-control" name="departments" required>
-                                                    <option value="Country">Country</option>
-                                                    <option value="Bangladesh">Bangladesh</option>
-                                                    <option value="Uk">Uk</option>
-                                                    <option value="Pakistan">Pakistan</option>
-                                                    <option value="Dubai">Dubai</option>
-                                                    <option value="India">India</option>
-                                                    <option value="Argentina">Argentina</option>
-                                                    <option value="Canada">Canada</option>
-                                               </select>
-                                        </div>
                                           <div class="table_info_btn2">
                                              <div class="form-group">
-                                               <input type="search" name="search" class="form-control" placeholder="" required>
+                                               <input type="search" name="search" class="form-control" placeholder="Name or Room Type" required>
                                            </div>
                                          </div>
                                         <div class="table_info_btn3">
                                             <div class="form_btn2">
                                                <button type="submit">Search</button>
                                             </div>
-                                            <div class="form_btn2">
-                                              <button type="submit">Show All</button>
-                                           </div>
                                          </div>
                                       </form>
                                   </div>
@@ -88,24 +73,22 @@
                                       <div id="example" class="example table-wrapper-scroll-y my-custom-scrollbar">
                                         <table  class="table-bordered table-striped">
                                               <tr>
-                                                  <th>Customer Id</th>
-                                                  <th>Check In</th>
+                                                <th>Id</th>
+                                                <th>Check In</th>
                                                 <th>Check Out</th>
                                                 <th>First Name</th>
                                                 <th>Last Name</th>
                                                 <th>Email</th>
-                                                <th>Mobile Number</th>
+                                                <th>Phone Number</th>
+                                                <th>Address</th>
+                                                <th>Country</th>
+                                                <th>Personal Identity</th>
+                                                <th>Upload Image</th>
                                                 <th>ADULT</th>
-                                                  <th>CHILDREN</th>
-                                                    <th>Total Person</th>
+                                                <th>CHILDREN</th>
                                                 <th>Select Room</th>
                                                 <th>Room Number</th>
-                                                <th>Gender</th>
-                                                  <th>Personal Identity</th>
-                                                   <th>Upload Image</th>
-                                                <th>Country</th>
-                                                  <th>Address</th>
-                                                  <th>Action</th>
+                                                <th>Action</th>
 
                                               </tr>
 
@@ -113,26 +96,24 @@
 
                                         {% for i in data %}
                                            <tr>
-                                          <td>{{i.Customer_Id}}</td>
+                                          <td>{{i.Id}}</td>
                                           <td>{{i.Check_in}}</td>
                                           <td>{{i.Check_out}}</td>
                                           <td>{{i.First_Name}}</td>
                                           <td>{{i.Last_Name}}</td>
                                           <td>{{i.Email}}</td>
-                                          <td>{{i.Mobile_Number}}</td>
+                                          <td>{{i.Phone_Number}}</td>
+                                          <td>{{i.Address}}</td>
+                                          <td>{{i.Country}}</td>
+                                          <td>{{i.Personal_Identity}}</td>
+                                          <td>{{i.Image}}</td>
                                           <td>{{i.ADULT}}</td>
                                           <td>{{i.CHILDREN}}</td>
-                                          <td>{{i.Total_Person}}</td>
                                           <td>{{i.Select_Room}}</td>
                                           <td>{{i.Room_Number}}</td>
-                                          <td>{{i.Gender}}</td>
-                                          <td>{{i.Personal_Identity}}</td>
-                                          <td>{{i.Upload_Image}}</td>
-                                          <td>{{i.Country}}</td>
-                                           <td>{{i.Address}}</td>
                                           <td class="action">
-                                                   <a  href="{% url 'AllCustpage_Delete' id=i.Customer_Id%}">Delete</a>
-                                                   <a  href="{% url 'EditCustomer' id=i.Customer_Id%}">Update</a>
+                                                   <a  href="{% url 'AllCustpage_Delete' id=i.Id%}">Delete</a>
+                                                   <a  href="{% url 'EditCustomer' id=i.Id%}">Update</a>
                                           </td>
                                        </tr>
                                         {%endfor%}
@@ -193,15 +174,15 @@
                                           <div class="Grid_view_top">
                                               <p> <span class="hover_icon"><i class="fas fa-ellipsis-h"></i></span>
                                                 <div class="del_Edit">
-                                                   <a href="{% url 'EditCustomer' id=i.Customer_Id%}"><i class="fas fa-user-edit"></i></a>
-                                                   <a href="{% url 'AllCustpage_Delete' id=i.Customer_Id%}"><i class="fas fa-trash-alt"></i></a>
+                                                   <a href="{% url 'EditCustomer' id=i.Id%}"><i class="fas fa-user-edit"></i></a>
+                                                   <a href="{% url 'AllCustpage_Delete' id=i.Id%}"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                               </p>
-                                                {%if i.Upload_Image %}
-                                               <img src="{{i.Upload_Image.url}}" alt="img">
+                                                {%if i.Image %}
+                                               <img src="{{i.Image.url}}" alt="img">
                                                {% endif %}
                                               <h4>{{i.First_Name}} {{i.Last_Name}}</h4>
-                                              <h6>{{i.Mobile_Number}}</h6>
+                                              <h6>{{i.Phone_Number}}</h6>
                                           </div>
                                            <div class="Grid_view_botton">
                                                     <div class="Grid_view_botton_info">
@@ -217,17 +198,14 @@
                                                           <p>{{i.Email}}</p>
                                                       </div>
                                                        <div class="Grid_view_botton_info">
-                                                           <h5>Total Person:</h5>
-                                                           <p>{{i.Total_Person}}</p>
-                                                       </div>
-                                                       <div class="Grid_view_botton_info">
                                                            <h5>Select Room :</h5>
                                                            <p>{{i.Select_Room }}</p>
                                                        </div>
-                                                     <div class="Grid_view_botton_info">
-                                                         <h5>Room Number:</h5>
-                                                         <p>{{i.Room_Number}}</p>
-                                                     </div>
+                                                       <div class="Grid_view_botton_info">
+                                                        <h5>Room Number :</h5>
+                                                        <p>{{i.Room_Number }}</p>
+                                                    </div>
+                                                     
                                            </div>
                                   </div>
                                       {%endfor%}

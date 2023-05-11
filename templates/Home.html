@@ -1,4 +1,5 @@
-{%extends 'allinclude.html'%}
+
+{%extends 'IncludeAll.html'%}
  {% block title %}
     Hotel & Resort
 		  {% endblock %}
@@ -76,7 +77,7 @@
 
 
     <!--================Book A Table Area =================-->
-    <section id="Book_Table">
+    {% comment %} <section id="Book_Table">
        <div class="container">
           <div class="row">
              <div class="col-lg-12">
@@ -122,7 +123,7 @@
              </div>
           </div>
        </div>
-    </section>
+    </section> {% endcomment %}
 
      <!--================About Part=================-->
      <section id="about">
@@ -168,7 +169,7 @@
                        <img src="{%static 'Allfiles/RoomType/single_1.jpg'%}" alt="img">
                        <div class="btn ">
                           <div class="room_btn">
-                            <a href="{% url 'OnlineBooking_a' %}?id=Single">Booking Now</a>
+                            <a href="{% url 'createOnlineBooking' %}?id=Single">Booking Now</a>
                           </div>
                        </div>
                      </div>
@@ -186,7 +187,7 @@
                        <img src=" {%static 'Allfiles/RoomType/double_1_1.jpg'%}" alt="img">
                        <div class="btn ">
                           <div class="room_btn">
-                            <a href="{% url 'OnlineBooking_a' %}?id=Double">Booking Now</a>
+                            <a href="{% url 'createOnlineBooking' %}?id=Double">Booking Now</a>
                           </div>
                        </div>
                      </div>
@@ -204,7 +205,7 @@
                        <img src="{%static 'Allfiles/RoomType/family_1.jpg'%}" alt="img">
                        <div class="btn ">
                           <div class="room_btn">
-                            <a href="{% url 'OnlineBooking_a' %}?id=Family">Booking Now</a>
+                            <a href="{% url 'createOnlineBooking' %}?id=Family">Booking Now</a>
                           </div>
                        </div>
                      </div>
@@ -222,7 +223,7 @@
                        <img src="{%static 'Allfiles/RoomType/luxury_1.jpg'%}" alt="img">
                        <div class="btn ">
                           <div class="room_btn">
-                            <a href="{% url 'OnlineBooking_a' %}?id=Luxury">Booking Now</a>
+                            <a href="{% url 'createOnlineBooking' %}?id=Luxury">Booking Now</a>
                           </div>
                        </div>
                      </div>
@@ -237,10 +238,10 @@
                 <div class="col-lg-4">
                    <div class="rooms-view">
                      <div class="ROOMS_pic">
-                       <img src="{%static 'Allfiles/RoomType/delux_1.jpg'%}?id=Delux" alt="img">
+                       <img src="{%static 'Allfiles/RoomType/delux_1.jpg'%}" alt="img">
                        <div class="btn ">
                           <div class="room_btn">
-                            <a href="{% url 'OnlineBooking_a' %}">Booking Now</a>
+                            <a href="{% url 'createOnlineBooking' %}?id=Delux">Booking Now</a>
                           </div>
                        </div>
                      </div>
@@ -255,10 +256,10 @@
                 <div class="col-lg-4">
                    <div class="rooms-view">
                      <div class="ROOMS_pic">
-                       <img src="{%static 'Allfiles/RoomType/super_delux_1.jpg'%}?id=Super Delux" alt="img">
+                       <img src="{%static 'Allfiles/RoomType/super_delux_1.jpg'%}?" alt="img">
                        <div class="btn ">
                           <div class="room_btn">
-                            <a href="{% url 'OnlineBooking_a' %}">Booking Now</a>
+                            <a href="{% url 'createOnlineBooking' %}?id=Super Delux">Booking Now</a>
                           </div>
                        </div>
                      </div>
@@ -355,93 +356,93 @@
     </section>
 
 
-<!--================OUR GALLERY=================-->
-<section id="GALLERY">
-   <div class="container">
-       <div class="row text-center justify-content-center">
-          <div class="col-lg-8">
-              <div class="GALLERY_title">
-                <h2>OUR GALLERY</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellente sque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam</p>
-               </div>
-          </div>
-       </div>
-       <div class="GALLERY_view">
-          <div class="row GALLERY_slider">
-             <div class="col-lg-3">
-                 <div class="GALLERY_info" >
-                    <div class="GALLERY_pic">
-                       <img src="{%static 'Allfiles/Photo/gallery-1.jpg'%}" alt="img">
-                     </div>
-                     <div class="gallary_overly text-center justify-content-center"  href="{%static 'Allfiles/photo/gallery-1-pop.jpg'%}">
-                       <i class="fas fa-search-plus"></i>
-                     </div>
+   <!--================OUR GALLERY=================-->
+   <section id="GALLERY">
+      <div class="container">
+         <div class="row text-center justify-content-center">
+            <div class="col-lg-8">
+               <div class="GALLERY_title">
+                  <h2>OUR GALLERY</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellente sque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam</p>
                   </div>
-             </div>
-             <div class="col-lg-3">
-                 <div class="GALLERY_info">
-                    <div class="GALLERY_pic">
-                       <img src=" {%static 'Allfiles/Photo/gallery-2.jpg'%}" alt="img">
-                     </div>
-                      <div class="gallary_overly text-center justify-content-center"  href="{%static 'Allfiles/photo/gallery-2-pop.jpg'%}">
-                       <i class="fas fa-search-plus"></i>
-                     </div>
-                  </div>
-             </div>
-             <div class="col-lg-3">
-                 <div class="GALLERY_info">
-                    <div class="GALLERY_pic">
-                       <img src=" {%static 'Allfiles/Photo/gallery-3.jpg'%}" alt="img">
-                     </div>
-                      <div class="gallary_overly text-center justify-content-center"  href="{%static 'Allfiles/photo/gallery-3-pop.jpg'%}">
-                       <i class="fas fa-search-plus"></i>
-                     </div>
-                  </div>
-             </div>
-             <div class="col-lg-3">
-                 <div class="GALLERY_info">
-                    <div class="GALLERY_pic">
-                       <img src=" {%static 'Allfiles/Photo/gallery-3.jpg'%}" alt="img">
-                     </div>
-                      <div class="gallary_overly text-center justify-content-center" href="{%static 'Allfiles/photo/gallery-3-pop.jpg'%}">
-                       <i class="fas fa-search-plus"></i>
-                     </div>
-                  </div>
-             </div>
-             <div class="col-lg-3">
-                 <div class="GALLERY_info" href="{%static 'Allfiles/photo/gallery-1-pop.jpg'%}">
-                    <div class="GALLERY_pic">
-                       <img src=" {%static 'Allfiles/Photo/gallery-1.jpg'%}" alt="img">
-                     </div>
-                      <div class="gallary_overly text-center justify-content-center">
-                       <i class="fas fa-search-plus"></i>
-                     </div>
-                  </div>
-             </div>
-             <div class="col-lg-3">
-                 <div class="GALLERY_info" href="{%static 'Allfiles/photo/gallery-2-pop.jpg'%}">
-                    <div class="GALLERY_pic">
-                       <img src=" {%static 'Allfiles/Photo/gallery-2.jpg'%}" alt="img">
-                     </div>
-                      <div class="gallary_overly text-center justify-content-center">
-                       <i class="fas fa-search-plus"></i>
-                     </div>
-                  </div>
-             </div>
-             <div class="col-lg-3">
-                 <div class="GALLERY_info" href="{%static 'Allfiles/photo/gallery-3-pop.jpg'%}">
-                    <div class="GALLERY_pic">
-                       <img src="{%static 'Allfiles/Photo/gallery-3.jpg'%}" alt="img">
-                     </div>
-                      <div class="gallary_overly text-center justify-content-center">
-                       <i class="fas fa-search-plus"></i>
-                     </div>
-                  </div>
-             </div>
+            </div>
          </div>
-       </div>
-   </div>
-</section>
+         <div class="GALLERY_view">
+            <div class="row GALLERY_slider">
+               <div class="col-lg-3">
+                  <div class="GALLERY_info" >
+                     <div class="GALLERY_pic">
+                        <img src="{%static 'Allfiles/Photo/gallery-1.jpg'%}" alt="img">
+                        </div>
+                        <div class="gallary_overly text-center justify-content-center"  href="{%static 'Allfiles/photo/gallery-1-pop.jpg'%}">
+                        <i class="fas fa-search-plus"></i>
+                        </div>
+                     </div>
+               </div>
+               <div class="col-lg-3">
+                  <div class="GALLERY_info">
+                     <div class="GALLERY_pic">
+                        <img src=" {%static 'Allfiles/Photo/gallery-2.jpg'%}" alt="img">
+                        </div>
+                        <div class="gallary_overly text-center justify-content-center"  href="{%static 'Allfiles/photo/gallery-2-pop.jpg'%}">
+                        <i class="fas fa-search-plus"></i>
+                        </div>
+                     </div>
+               </div>
+               <div class="col-lg-3">
+                  <div class="GALLERY_info">
+                     <div class="GALLERY_pic">
+                        <img src=" {%static 'Allfiles/Photo/gallery-3.jpg'%}" alt="img">
+                        </div>
+                        <div class="gallary_overly text-center justify-content-center"  href="{%static 'Allfiles/photo/gallery-3-pop.jpg'%}">
+                        <i class="fas fa-search-plus"></i>
+                        </div>
+                     </div>
+               </div>
+               <div class="col-lg-3">
+                  <div class="GALLERY_info">
+                     <div class="GALLERY_pic">
+                        <img src=" {%static 'Allfiles/Photo/gallery-3.jpg'%}" alt="img">
+                        </div>
+                        <div class="gallary_overly text-center justify-content-center" href="{%static 'Allfiles/photo/gallery-3-pop.jpg'%}">
+                        <i class="fas fa-search-plus"></i>
+                        </div>
+                     </div>
+               </div>
+               <div class="col-lg-3">
+                  <div class="GALLERY_info" href="{%static 'Allfiles/photo/gallery-1-pop.jpg'%}">
+                     <div class="GALLERY_pic">
+                        <img src=" {%static 'Allfiles/Photo/gallery-1.jpg'%}" alt="img">
+                        </div>
+                        <div class="gallary_overly text-center justify-content-center">
+                        <i class="fas fa-search-plus"></i>
+                        </div>
+                     </div>
+               </div>
+               <div class="col-lg-3">
+                  <div class="GALLERY_info" href="{%static 'Allfiles/photo/gallery-2-pop.jpg'%}">
+                     <div class="GALLERY_pic">
+                        <img src=" {%static 'Allfiles/Photo/gallery-2.jpg'%}" alt="img">
+                        </div>
+                        <div class="gallary_overly text-center justify-content-center">
+                        <i class="fas fa-search-plus"></i>
+                        </div>
+                     </div>
+               </div>
+               <div class="col-lg-3">
+                  <div class="GALLERY_info" href="{%static 'Allfiles/photo/gallery-3-pop.jpg'%}">
+                     <div class="GALLERY_pic">
+                        <img src="{%static 'Allfiles/Photo/gallery-3.jpg'%}" alt="img">
+                        </div>
+                        <div class="gallary_overly text-center justify-content-center">
+                        <i class="fas fa-search-plus"></i>
+                        </div>
+                     </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
     <!--================Counter Part Start=================-->
 
     <section id="Counter" style="background:url({%static 'Allfiles/photo/bg1.jpg'%})">
@@ -595,6 +596,6 @@
          </div>
        </div>
    </div>
-</section>
+   </section>
     <!--================Our Special Staff Part end =================-->
  {% endblock %}

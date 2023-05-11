@@ -1,9 +1,9 @@
-{%extends 'admin/AdminAllinclude.html'%}
+{%extends 'IncludeAll.html'%}
 {% block title %}
- All employee page
+ Online Customers Booking
 {% endblock %}
   {% block  pagecontant %}
-  {% load static %}
+     {% load static %}
          <!-- page content -->
       <!--************************************
 			Table part start
@@ -15,12 +15,12 @@
 
                  <div class ="col-lg-6">
                      <div class="add_student">
-                        <h2 >All employees</h2>
+                        <h2 >All Online Booking Customers</h2>
                      </div>
                  </div>
                 <div class ="col-lg-6">
                     <div class="add_student_link">
-                        <a href="{% url 'Adminpage' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="{% url 'Addemployee' %}">Add employees</a>
+                        <a href="{% url 'Adminpage' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="#">Online Booking</a>
                      </div>
                  </div>
             </div>
@@ -38,13 +38,12 @@
                           <div class="tab-pane active" id="List_View">
                               <div class="col-lg-12">
                                   <div class="table_tilte">
-                                      <h4>All Employees List</h4>
-                                      <a href="{% url 'Addemployee' %}"><i class="fas fa-plus"></i> Add New</a>
+                                      <h4>Online Booking Customers List</h4>
                                   </div>
                               </div>
                               <div class="col-lg-12">
                                   <div class="table_info11">
-                                      <form action="Allemployee" method="post" enctype="multipart/form-data">
+                                      <form action="" method="post" enctype="multipart/form-data">
                                           {% csrf_token %}
                                           <div class="form-group table_info_btn">
                                                <label class="form-label">Show</label>
@@ -56,21 +55,9 @@
                                                    <option value="angular">100</option>
                                                </select>
                                             </div>
-                                          <div class="form-group table_info_btn1" >
-                                                 <select class="form-control" name="departments" required>
-                                                    <option value="Departments">Departments</option>
-                                                    <option value="Housekeeping">Housekeeping</option>
-                                                    <option value="Kitchen">Manager</option>
-                                                    <option value="Security">Chef</option>
-                                                    <option value="Food and Beverage">Food and Beverage</option>
-                                                    <option value="Kitchen">Kitchen</option>
-                                                    <option value="Security">Security</option>
-                                                    <option value="Security">transport</option>
-                                               </select>
-                                        </div>
                                           <div class="table_info_btn2">
                                              <div class="form-group">
-                                               <input type="search" name="search" class="form-control" placeholder="" required>
+                                               <input type="search" name="search" class="form-control" placeholder="Name or Country" required>
                                            </div>
                                          </div>
                                         <div class="table_info_btn3">
@@ -88,52 +75,45 @@
                                       <div id="example" class="example table-wrapper-scroll-y my-custom-scrollbar">
                                         <table  class="table-bordered table-striped">
                                           <tr>
-                                               <th>Employee Id</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Email</th>
-                                                <th>Mobile Number</th>
-                                                <th>Joining Date</th>
-                                                  <th>Date of Birth</th>
-                                                <th>Departments</th>
-                                                <th>Gender</th>
-                                                <th>Blood Group</th>
-                                                  <th>Education</th>
-                                                <th>Personal Identity</th>
-                                                   <th>Guardian</th>
-                                                <th>Guardian Number</th>
-                                                  <th>Upload Image</th>
-                                                   <th>Address</th>
-                                                  <th>Action</th>
-                                              </tr>
-
-
+                                              <th>Id</th>
+                                                <th>Check in</th>
+                                            <th>Check out</th>
+                                            <th>Adult</th>
+                                            <th>Children</th>
+                                            <th>Name</th>
+                                            <th>Surname</th>
+                                              <th>Email</th>
+                                            <th>Phone Number</th>
+                                              <th>City</th>
+                                            <th>Country</th>
+                                              <th>Nid No</th>
+                                               <th>img</th>
+                                              <th>Messege</th>
+                                               <th>Action</th>
+                                          </tr>
                                             {%if data %}
 
                                         {% for i in data %}
-                                              <tr>
-                                          <td>{{i.Employee_Id}}</td>
-                                          <td>{{i.First_Name}}</td>
-                                          <td>{{i.Last_Name}}</td>
-                                          <td>{{i.Email}}</td>
-                                          <td>{{i.Mobile_Number}}</td>
-                                          <td>{{i.Joining_Date }}</td>
-                                          <td>{{i.Dateof_Birth}}</td>
-                                          <td>{{i.Departments}}</td>
-                                          <td>{{i.Gender}}</td>
-                                          <td>{{i.Blood_Group}}</td>
-                                          <td>{{i.Education}}</td>
-                                          <td>{{i.Personal_Identity}}</td>
-                                          <td>{{i.Guardian}}</td>
-                                          <td>{{i.Guardian_Number}}</td>
-                                          <td>{{i.Upload_Image}}</td>
-                                          <td>{{i.Address}}</td>
-                                          <td class="action">
-                                                   <a  href="{% url 'AllEmployee_Delete' id=i.Employee_Id%}">Delete</a>
-                                                   <a  href="{% url 'Editemployee' id=i.Employee_Id%}">Update</a>
-                                          </td>
-                                     </tr>
-
+                                         <tr>
+                                              <td>{{i.Id}}</td>
+                                              <td>{{i.Check_in}}</td>
+                                              <td>{{i.Check_out}}</td>
+                                              <td>{{i.ADULT}}</td>
+                                              <td>{{i.CHILDREN}}</td>
+                                              <td>{{i.Name}}</td>
+                                              <td>{{i.Surname}}</td>
+                                              <td>{{i.Email}}</td>
+                                              <td>{{i.Phone_Number}}</td>
+                                              <td>{{i.City}}</td>
+                                              <td>{{i.Country}}</td>
+                                              <td>{{i.Nid_No}}</td>
+                                              <td>{{i.Img}}</td>
+                                              <td>{{i.Address}}</td>
+                                              <td class="action">
+                                                   <a  href="{% url 'delete' id=i.Id%}">Delete</a>
+                                                   <a  href="{% url 'Edit_online_Booking' id=i.Id%}">Update</a>
+                                              </td>
+                                         </tr>
                                         {%endfor%}
 
                                         {% endif %}
@@ -144,7 +124,7 @@
                           <div class="tab-pane" id="Grid_view">
                                <div class="col-lg-12">
                                   <div class="table_info11">
-                                      <form method="post" action="Allemployee">
+                                      <form method="post" action="">
                                           {% csrf_token %}
                                           <div class="form-group table_info_btn">
                                                <label class="form-label">Show</label>
@@ -157,20 +137,17 @@
                                                </select>
                                             </div>
                                           <div class="form-group table_info_btn1" >
-                                               <select class="form-control" name="departments" required>
-                                                    <option value="Departments">Departments</option>
-                                                    <option value="Housekeeping">Housekeeping</option>
-                                                    <option value="Kitchen">Manager</option>
-                                                    <option value="Security">Chef</option>
-                                                    <option value="Food and Beverage">Food and Beverage</option>
-                                                    <option value="Kitchen">Kitchen</option>
-                                                    <option value="Security">Security</option>
-                                                    <option value="Security">transport</option>
-                                               </select>
+                                              <select class="form-control" name="dept">
+                                               <option value="Class">Select Options</option>
+                                               <option value="html">CSE</option>
+                                               <option value="css">EEE</option>
+                                               <option value="javascript">LLB</option>
+                                               <option value="angular">BBA</option>
+                                              </select>
                                         </div>
                                           <div class="table_info_btn2">
                                              <div class="form-group">
-                                               <input type="search" name="search" class="form-control" placeholder="" required>
+                                               <input type="search" name="serch" class="form-control" placeholder="" required>
                                            </div>
                                          </div>
                                         <div class="table_info_btn3">
@@ -185,53 +162,53 @@
                                   </div>
                               </div>
                               <div class="col-lg-12 table-wrapper-scroll-y my-custom-scrollbar Grid_view_pic">
-                                      {%if data %}
+                                     {%if data %}
 
-                                        {% for i in data %}
+                                    {% for i in data %}
                                      <div class="col-lg-4 Grid_view_pic_info" >
                                           <div class="Grid_view_top">
                                               <p> <span class="hover_icon"><i class="fas fa-ellipsis-h"></i></span>
-                                                <div class="del_Edit">
-                                                   <a href="{% url 'Editemployee' id=i.Employee_Id%}"><i class="fas fa-user-edit"></i></a>
-                                                   <a href="{% url 'AllEmployee_Delete' id=i.Employee_Id%}"><i class="fas fa-trash-alt"></i></a>
+                                                 <div class="del_Edit">
+                                                   <a href="{% url 'Edit_online_Booking' id=i.Id%}"> <i class="fas fa-user-edit"></i></a>
+                                                   <a href="{% url 'delete' id=i.Id%}"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                               </p>
-                                               {%if i.Upload_Image %}
-                                               <img src="{{i.Upload_Image.url}}" alt="img">
+                                               {%if i.Img %}
+                                               <img src="{{i.Img.url}}" alt="img">
                                                {% endif %}
-                                              <h4>{{i.First_Name}}{{i.Last_Name}}</h4>
-                                              <h6>{{i.Employee_Id}}</h6>
+                                              <h4>{{i.Name}} {{i.Surname}}</h4>
+                                              <h6>{{i.Phone_Number}}</h6>
                                           </div>
                                            <div class="Grid_view_botton">
                                                     <div class="Grid_view_botton_info">
-                                                        <h5>Department:</h5>
-                                                        <p>{{i.Departments}}</p>
+                                                        <h5>Check in:</h5>
+                                                        <p>{{i.Check_in}}</p>
                                                     </div>
                                                       <div class="Grid_view_botton_info">
-                                                          <h5>Personal Identity:</h5>
-                                                          <p>{{i.Personal_Identity}}</p>
+                                                          <h5>Check out:</h5>
+                                                          <p>{{i.Check_out}}</p>
                                                       </div>
                                                       <div class="Grid_view_botton_info">
                                                           <h5 >Email:</h5>
                                                           <p>{{i.Email}}</p>
                                                       </div>
                                                       <div class="Grid_view_botton_info">
-                                                          <h5>Phone Number:</h5>
-                                                          <p>{{i.Mobile_Number}}</p>
+                                                          <h5>Nid No:</h5>
+                                                          <p>{{i.Nid_No}}</p>
                                                       </div>
                                                        <div class="Grid_view_botton_info">
-                                                           <h5>Guardian Number:</h5>
-                                                           <p>{{i.Guardian_Number}}</p>
+                                                           <h5>Adult:</h5>
+                                                           <p>{{i.ADULT}}</p>
                                                        </div>
                                                      <div class="Grid_view_botton_info">
-                                                         <h5>Address:</h5>
-                                                         <p>{{i.Address }}</p>
+                                                         <h5>Children:</h5>
+                                                         <p>{{i.CHILDREN}}</p>
                                                      </div>
                                            </div>
                                   </div>
-                                   {%endfor%}
+                                    {%endfor%}
 
-                                        {% endif %}
+                                  {% endif %}
                                   <div class="col-lg-4">
                                   
 
@@ -243,4 +220,4 @@
               </div>
           </div>
     </div>
-  {% endblock %}
+ {% endblock %}

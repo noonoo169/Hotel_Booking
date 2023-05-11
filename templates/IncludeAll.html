@@ -63,8 +63,11 @@
                                       <li><a href="https://plus.google.com/"><i class="fab fa-google-plus-g"></i></a></li>
                                       <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
                                       <li> <a href="https://www.pinterest.com/"><i class="fab fa-pinterest-p"></i></a></li>
-                                       <li><a href="{% url 'Aothur_login' %}">Login</a></li>
-
+                                       {% if Name %}
+                                      <li><a href="">Hi {{ Name }}</a></li>
+                                       {% else %}
+                                      <li><a href="{% url 'userLogin' %}">Login</a></li>
+                                       {% endif %}
                                    </ul>
                                 </div>
                             </div>
@@ -137,9 +140,11 @@
                        </li>
                      </ul>
                    </div>
+                   {% if Name is not None %}
                    <div class="Booking_button">
-                    <a href="{% url 'OnlineBooking' %}">Booking Now<span><i class="fas fa-angle-double-right"></i></span></a>
-                   </div>
+                     <a href="{% url 'userLogout' %}">Logout<span><i class="fas fa-angle-double-right"></i></span></a>
+                    </div>
+                   {% endif %}
                  </div>
              </nav>
      </header>

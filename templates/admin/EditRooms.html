@@ -1,4 +1,4 @@
-{%extends 'admin/AdminAllinclude.html'%}
+{%extends 'admin/AdminIncludeAll.html'%}
 {% block title %}
  Edit Rooms page
 {% endblock %}
@@ -21,7 +21,7 @@
                  </div>
                 <div class ="col-lg-6">
                     <div class="add_student_link">
-                        <a href="{% url 'Adminpage' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="{% url 'Add_room' %}">Add Rooms</a>
+                        <a href="{% url 'adminHome' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="{% url 'addRoom' %}">Add Rooms</a>
                      </div>
                  </div>
             </div>

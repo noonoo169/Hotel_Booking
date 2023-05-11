@@ -1,4 +1,4 @@
-{%extends 'allinclude.html'%}
+{%extends 'IncludeAll.html'%}
  {% block title %}
    Online Booking page
 		  {% endblock %}
@@ -13,7 +13,7 @@
                    <div class="col-md-10">
                       <div class="slider_booking_text">
                            <h4>HOTEL SERVICE</h4>
-                           <a href="{% url 'Home' %}">Home</a> <i class="fas fa-slash"></i> <a href="">Online Booking</a>
+                           <a href="{% url 'home' %}">Home</a> <i class="fas fa-slash"></i> <a href="">Online Booking</a>
                         </div>
                    </div>
                 </div>
@@ -79,7 +79,7 @@
                            </div>
                            <div class="form-group1">
                                <select class="form-control" name="ADULT">
-                                 <option value="ADULT">ADULT</option>
+                                 <option value="ADULT">None</option>
                                  <option value="1 ADULT">1 ADULT</option>
                                  <option value="2 ADULT">2 ADULT</option>
                                  <option value="3 ADULT">3 ADULT</option>
@@ -88,7 +88,7 @@
                            </div>
                            <div class="form-group1">
                               <select class="form-control" name="CHILDREN">
-                                 <option value="CHILDREN">CHILDREN</option>
+                                 <option value="CHILDREN">None</option>
                                  <option value="1 CHILDREN">1 CHILDREN</option>
                                  <option value="2 CHILDREN">2 CHILDREN</option>
                                  <option value="3 CHILDREN">3 CHILDREN</option>
@@ -96,10 +96,10 @@
                                </select>
                            </div>
                            <div class="form-group1">
-                              <input type="text" name="Name" class="form-control" placeholder="Name" required />
+                              <input type="text" name="First_Name" class="form-control" placeholder="First Name" required />
                            </div>
                            <div class="form-group1">
-                              <input type="text" name="Surname" class="form-control" placeholder="Surname" required />
+                              <input type="text" name="Last_Name" class="form-control" placeholder="Last Name" required />
                            </div>
                            <div class="form-group1">
                               <input type="text" name="Email" class="form-control" placeholder="Email" required />
@@ -108,19 +108,19 @@
                               <input type="text" name="Phone_Number" class="form-control" placeholder="Phone Number" required />
                            </div>
                            <div class="form-group1">
-                              <input type="text" name="City" class="form-control" placeholder="City" required />
-                           </div>
-                           <div class="form-group1">
                               <input type="text" name="Country" class="form-control" placeholder="Country" required />
                            </div>
                              <div class="form-group1">
-                              <input type="text" name="Nid_No" class="form-control" placeholder="Nid No" required />
+                              <input type="text" name="Personal_Identity" class="form-control" placeholder="Personal Identity" required />
                            </div>
                            <div class="form-group1">
-                              <input type="file" name="Img" class="form-control" placeholder="Img" required />
+                              <input type="file" name="Image" class="form-control" placeholder="Image" required />
                            </div>
                            <div class="form-group1">
-                            <textarea name="Address"  placeholder="Address"></textarea>
+                              <input type="text" name="Address" class="form-control" placeholder="Address" required />
+                           </div>
+                           <div class="form-group1">
+                              <input type="text" name="Select_Room" class="form-control" placeholder="Select Room" value="{{Room.Room_Type}}" readonly />
                            </div>
 
                         </div>

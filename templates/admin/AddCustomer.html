@@ -1,4 +1,4 @@
-{%extends 'admin/AdminAllinclude.html'%}
+{%extends 'admin/AdminIncludeAll.html'%}
 {% block title %}
  Add Customer page
 {% endblock %}
@@ -21,7 +21,7 @@
                  </div>
                 <div class ="col-lg-6">
                     <div class="add_student_link">
-                        <a href="{% url 'Adminpage' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="{% url 'AddCustomer' %}">Add Customers</a>
+                        <a href="{% url 'adminHome' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="{% url 'AddCustomer' %}">Add Customers</a>
                      </div>
                  </div>
             </div>
@@ -68,15 +68,15 @@
               </div>
                 <div class="col-lg-12">
                   <div class="form-group from_info">
-                      <label class="form-label">Mobile Number</label>
-                      <input type="text" name="Mobile_Number" class="form-control" placeholder="Mobile Number" required>
+                      <label class="form-label">Phone Number</label>
+                      <input type="text" name="Phone_Number" class="form-control" placeholder="Phone Number" required>
                   </div>
               </div>
                 <div class="col-lg-12">
                   <div class="form-group from_info">
                       <label class="form-label">ADULT</label>
                         <select class="form-control" name="ADULT">
-                            <option value="ADULT">ADULT</option>
+                            <option value="None">None</option>
                              <option value="1 ADULT">1 ADULT</option>
                               <option value="2 ADULT">2 ADULT</option>
                               <option value="3 ADULT">3 ADULT</option>
@@ -88,7 +88,7 @@
                   <div class="form-group from_info">
                       <label class="form-label">CHILDREN</label>
                            <select class="form-control" name="CHILDREN">
-                                 <option value="CHILDREN">CHILDREN</option>
+                                 <option value="None">None</option>
                                  <option value="1 CHILDREN">1 CHILDREN</option>
                                  <option value="2 CHILDREN">2 CHILDREN</option>
                                  <option value="3 CHILDREN">3 CHILDREN</option>
@@ -96,51 +96,23 @@
                            </select>
                   </div>
               </div>
-                     <div class="col-lg-12">
-                  <div class="form-group from_info">
-                      <label class="form-label">Total Person</label>
-                      <input type="text" name="Total_Person" class="form-control" placeholder="Total Person" required>
-                  </div>
-              </div>
                   <div class="col-lg-12">
                   <div class="form-group from_info">
                       <label class="form-label">Select Room</label>
                            <select class="form-control" name="Select_Room">
-                                 <option value="Select Room">Select Room</option>
-                                 <option value=" Delux">Delux</option>
-                                 <option value=" Super Delux">Super Delux</option>
-                                 <option value=" Single">Single</option>
-                                 <option value=" Double">Double</option>
+                                <option value="Single">Single</option>
+                                <option value="Double">Double</option>
+                                <option value="Family">Family</option>
+                                <option value="Luxury">Luxury</option>
+                                <option value="Delux">Delux</option>
+                                <option value="Super Delux">Super Delux</option>
                            </select>
-                  </div>
-              </div>
-                   <div class="col-lg-12">
-                  <div class="form-group from_info">
-                      <label class="form-label">Room Number</label>
-                           <select class="form-control" name="Room_Number">
-                                 <option value="Room Number">Room Number</option>
-                                 <option value=" Room101">Room101</option>
-                                 <option value=" Room102">Room102</option>
-                                 <option value="Room103">Room103</option>
-                                 <option value="Room104">Room104</option>
-                           </select>
-                  </div>
-              </div>
-
-                <div class="col-lg-12">
-                  <div class="form-group from_info">
-                      <label class="form-label">Gender</label>
-                      <select class="form-control" name="Gender" required>
-                          <option value="Gender">Gender</option>
-                          <option value="MALE">MALE</option>
-                          <option value="FEMALE">FEMALE</option>
-                      </select>
                   </div>
               </div>
                 <div class="col-lg-12">
                   <div class="form-group from_info">
                       <label class="form-label">Personal Identity</label>
-                      <input type="text" name="Personal_Identity" class="form-control" placeholder="NID/Birth certificate Number" required>
+                      <input type="text" name="Personal_Identity" class="form-control" placeholder="Personal Identity" required>
                   </div>
               </div>
 
@@ -179,31 +151,12 @@
                               {% csrf_token %}
                               <div class="from_info1">
                                    <div class="form-group">
-                                       <select class="form-control" name="departments" required>
-                                            <option value="Country">Country</option>
-                                            <option value="Bangladesh">Bangladesh</option>
-                                            <option value="Uk">Uk</option>
-                                            <option value="Pakistan">Pakistan</option>
-                                            <option value="Dubai">Dubai</option>
-                                            <option value="India">India</option>
-                                            <option value="Argentina">Argentina</option>
-                                            <option value="Canada">Canada</option>
-                                       </select>
-                                     </div>
-                                  </div>
-                              <div class="from_info2">
-                                   <div class="form-group">
-                                       <input type="search" name="serch" class="form-control" placeholder="" required>
+                                       <input type="search" name="serch" class="form-control" placeholder="Name or Room Type" required>
                                    </div>
                               </div>
                               <div class="from_info3">
                                     <div class="form_btn1">
                                          <button type="submit">Search</button>
-                                     </div>
-                              </div>
-                              <div class="from_info4">
-                                    <div class="form_btn1">
-                                         <button type="submit">Show All</button>
                                      </div>
                               </div>
                           </form>
@@ -213,50 +166,46 @@
                       <div id="example" class="example  table-wrapper-scroll-y my-custom-scrollbar">
                         <table  class="table-bordered table-striped">
                           <tr>
-                              <th>Customer Id</th>
-                              <th>Check In</th>
+                            <th>Id</th>
+                            <th>Check In</th>
                             <th>Check Out</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
-                            <th>Mobile Number</th>
+                            <th>Phone Number</th>
+                            <th>Address</th>
+                            <th>Country</th>
+                            <th>Personal Identity</th>
+                            <th>Upload Image</th>
                             <th>ADULT</th>
-                              <th>CHILDREN</th>
-                                <th>Total Person</th>
+                            <th>CHILDREN</th>
                             <th>Select Room</th>
                             <th>Room Number</th>
-                            <th>Gender</th>
-                              <th>Personal Identity</th>
-                               <th>Upload Image</th>
-                            <th>Country</th>
-                              <th>Address</th>
-                               <th>Action</th>
+                            <th>Action</th>
                           </tr>
                              {%if data %}
 
                                     {% for i in data %}
 
                                      <tr>
-                                          <td>{{i.Customer_Id}}</td>
-                                          <td>{{i.Check_in}}</td>
-                                          <td>{{i.Check_out}}</td>
-                                          <td>{{i.First_Name}}</td>
-                                          <td>{{i.Last_Name}}</td>
-                                          <td>{{i.Email}}</td>
-                                          <td>{{i.Mobile_Number}}</td>
-                                          <td>{{i.ADULT}}</td>
-                                          <td>{{i.CHILDREN}}</td>
-                                          <td>{{i.Total_Person}}</td>
-                                          <td>{{i.Select_Room}}</td>
-                                          <td>{{i.Room_Number}}</td>
-                                          <td>{{i.Gender}}</td>
-                                          <td>{{i.Personal_Identity}}</td>
-                                          <td>{{i.Upload_Image}}</td>
-                                          <td>{{i.Country}}</td>
-                                           <td>{{i.Address}}</td>
+                                        <td>{{i.Id}}</td>
+                                        <td>{{i.Check_in}}</td>
+                                        <td>{{i.Check_out}}</td>
+                                        <td>{{i.First_Name}}</td>
+                                        <td>{{i.Last_Name}}</td>
+                                        <td>{{i.Email}}</td>
+                                        <td>{{i.Phone_Number}}</td>
+                                        <td>{{i.Address}}</td>
+                                        <td>{{i.Country}}</td>
+                                        <td>{{i.Personal_Identity}}</td>
+                                        <td>{{i.Image}}</td>
+                                        <td>{{i.ADULT}}</td>
+                                        <td>{{i.CHILDREN}}</td>
+                                        <td>{{i.Select_Room}}</td>
+                                        <td>{{i.Room_Number}}</td>
                                           <td class="action">
-                                                   <a  href="{% url 'AddCustpage_Delete' id=i.Customer_Id%}">Delete</a>
-                                                   <a  href="{% url 'EditCustomer' id=i.Customer_Id%}">Update</a>
+                                                   <a  href="{% url 'AddCustpage_Delete' id=i.Id%}">Delete</a>
+                                                   <a  href="{% url 'EditCustomer' id=i.Id%}">Update</a>
                                           </td>
                                      </tr>
                              {%endfor%}
