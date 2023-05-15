@@ -103,7 +103,7 @@
               <div class="col-lg-6 form_right" style="background: blue;">
                   <div class="col-lg-12">
                       <div class="form_right_info">
-                          <form method="post" action="Add_Room_Search" enctype="multipart/form-data">
+                          <form method="post" action="addRoomSearch" enctype="multipart/form-data">
                               {% csrf_token %}
                               <div class="from_info1">
                                    <div class="form-group">
@@ -148,8 +148,10 @@
                                           <td>{{i.Date}}</td>
                                           <td>{{i.Time}}</td>
                                           <td class="action">
+                                            {% if i.Is_Available == True %}
                                                    <a  href="{% url 'AddRooms_Delete' id=i.Id%}">Delete</a>
-                                                   <a  href="{% url 'editRoom' id=i.Id%}">Update</a>
+                                            {%endif%}
+                                                   <a style="background-color: green" href="{% url 'editRoom' id=i.Id%}">Update</a>
                                           </td>
                                      </tr>
                              {%endfor%}

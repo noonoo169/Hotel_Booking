@@ -31,26 +31,25 @@
                         <div class="col-lg-12">
                           <div class="form-group edit_form">
                             <label class="form-label">Id</label>
-                            <input type="text" name="Id" class="form-control" value={{ data.Id }} readonly >
-                            {% comment %} <input type="text" name="Id" class="form-control" value={{ data.Customer.Id }} readonly > {% endcomment %}
-                          
+                            <input type="text" name="Id" class="form-control" value={{data.Id}} readonly >
+                            <!-- {% comment %} <input type="text" name="Id" class="form-control" value={{ data.Customer.Id }} readonly > {% endcomment %} -->
                           </div>
                           <div class="form-group edit_form">
                             <label class="form-label">Customer Id</label>
-                            <input type="text" name="Id" class="form-control" value={{ data.Customer.Id }} readonly >
+                            <input type="text" name="Customer_Id" class="form-control" value={{data.Customer.Id}} readonly >
                           </div>
                           <div class="form-group edit_form">
                             <label class="form-label">Personal Identity</label>
-                            <input type="text"  name="Personal_Identity" class="form-control" value={{ data.Personal_Identity }}>
+                            <input type="text"  name="Personal_Identity" class="form-control" value={{data.Personal_Identity}}>
                           </div>
 
                           <div class="form-group edit_form">
                             <label class="form-label">Check In</label>
-                            <input type="datetime-local" name="Check_in" class="form-control" placeholder="Check In" value={{ data.Check_in }}>
+                            <input type="datetime-local" name="Check_in" class="form-control" placeholder="Check In" value={{data.Check_in}}>
                           </div>
                           <div class="form-group edit_form">
                             <label class="form-label">Check Out</label>
-                            <input type="datetime-local" name="Check_out" class="form-control" placeholder="Check Out" value={{ data.Check_out }}>
+                            <input type="datetime-local" name="Check_out" class="form-control" placeholder="Check Out" value="{{data.Check_out}}">
                           </div>
                           <div class="form-group edit_form">
                             <label class="form-label">First Name</label>
@@ -86,7 +85,7 @@
                           </div>
                           <div class="form-group edit_form">
                             <label class="form-label">Upload Image</label>
-                            <input type="file" name="Upload_Image" class="form-control">
+                            <input type="file" name="Image" class="form-control">
                           </div>
                           <div class="form-group edit_form">
                             <label class="form-label">Country</label>

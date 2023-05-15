@@ -67,7 +67,7 @@
                                         </div> -->
                                           <div class="table_info_btn2">
                                              <div class="form-group">
-                                               <input type="search" name="search" class="form-control" placeholder="" required>
+                                               <input type="search" name="search" class="form-control" placeholder="Room Number or Num Type" >
                                            </div>
                                          </div>
                                         <div class="table_info_btn3">
@@ -108,8 +108,10 @@
                                           <td>{{i.Date}}</td>
                                           <td>{{i.Time}}</td>
                                               <td class="action">
+                                                {% if i.Is_Available == True %}
                                                        <a  href="{% url 'AllRooms_Delete' id=i.Id%}">Delete</a>
-                                                       <a  href="{% url 'editRoom' id=i.Id%}">Update</a>
+                                                {% endif %}
+                                                       <a style="background-color: green" href="{% url 'editRoom' id=i.Id%}">Update</a>
                                               </td>
                                         </tr>
                                         {%endfor%}
@@ -134,7 +136,7 @@
                                                    <option value="angular">100</option>
                                                </select>
                                             </div>
-                                          <div class="form-group table_info_btn1" >
+                                          <!-- <div class="form-group table_info_btn1" >
                                                <select class="form-control" name="Room_Type">
                                                  <option value="Select Room">Select Room</option>
                                                  <option value=" Delux">Delux</option>
@@ -142,19 +144,19 @@
                                                  <option value=" Single">Single</option>
                                                  <option value=" Double">Double</option>
                                                </select>
-                                        </div>
+                                        </div> -->
                                           <div class="table_info_btn2">
                                              <div class="form-group">
-                                               <input type="search" name="search" class="form-control" placeholder="" required>
+                                               <input type="search" name="search" class="form-control" placeholder="Room Number or Room Type" required>
                                            </div>
                                          </div>
                                         <div class="table_info_btn3">
                                             <div class="form_btn2">
                                                <button type="submit">Search</button>
                                             </div>
-                                            <div class="form_btn2">
+                                            <!-- <div class="form_btn2">
                                               <button type="submit">Show All</button>
-                                           </div>
+                                           </div> -->
                                          </div>
                                       </form>
                                   </div>
@@ -168,8 +170,10 @@
                                               <p> <span class="hover_icon"><i class="fas fa-ellipsis-h"></i></span>
                                                 <div class="del_Edit">
                                                    <a href="{% url 'editRoom' id=i.Id%}"><i class="fas fa-user-edit"></i></a>
+                                                {% if i.Is_Available == True %}
                                                    <a href="{% url 'AllRooms_Delete' id=i.Id%}"><i class="fas fa-trash-alt"></i></a>
-                                                </div>
+                                                {%endif%}
+                                                  </div>
                                               </p>
                                                 {%if i.Room_Image %}
                                                <img src="{{i.Room_Image.url}}" alt="img">
@@ -187,13 +191,13 @@
                                                           <p>{{i.Room_Price}}</p>
                                                       </div>
                                                       <div class="Grid_view_botton_info">
-                                                          <h5>Date:</h5>
-                                                          <p>{{i.Date}}</p>
+                                                          <h5>Room Facility:</h5>
+                                                          <p>{{i.Room_Facility}}</p>
                                                       </div>
-                                                     <div class="Grid_view_botton_info">
-                                                         <h5>Room Facility:</h5>
-                                                         <p>{{i.Room_Facility}}</p>
-                                                     </div>
+                                                      <div class="Grid_view_botton_info">
+                                                          <h5>Is Booked:</h5>
+                                                          <p>{{i.Is_Available}}</p>
+                                                      </div>
                                            </div>
                                   </div>
                                       {%endfor%}
