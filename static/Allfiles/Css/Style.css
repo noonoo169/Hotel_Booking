@@ -836,8 +836,10 @@ h2 {
 }
  
 .ROOMS_info .slick-dots {
-     margin-left:500px;
-      margin-top:15px;  
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:15px;  
+    width: 11%; 
 }
 .ROOMS_info .slick-dots li {
       width: 20px;
@@ -882,16 +884,18 @@ OUR AWESOME SERVICES
    z-index:999;
 }
 .Service_menu li .service-icon img{
-  border:1px solid var(--textcolor);
-  border-radius:100%;
-  background:var(--textcolor);
-  padding: 20px;
-  cursor: pointer;
-  transition: all linear 0.9s;
-  -webkit-transition: all linear 0.9s;
-  -moz-transition: all linear 0.9s;
-  -ms-transition: all linear 0.9s;
-  -o-transition: all linear 0.9s;
+    border: 1px solid var(--textcolor);
+    border-radius: 50%;
+    background: var(--textcolor);
+    padding: 20px;
+    cursor: pointer;
+    transition: all linear 0.9s;
+    -webkit-transition: all linear 0.9s;
+    -moz-transition: all linear 0.9s;
+    -ms-transition: all linear 0.9s;
+    -o-transition: all linear 0.9s;
+    height: 80px;
+    width: 80px;
 }
 .Service_menu li .service-icon img:hover{
     background:var(--bgcolor);
@@ -992,6 +996,7 @@ OUR GALLERY
     margin-right: auto;
     margin-top: 15px;
     overflow: hidden;
+    width: 15%;
 }
 
 .GALLERY_slider .slick-dots li {
@@ -1100,7 +1105,7 @@ Counter Part CSS
  }
  .Staff_overly{
    position:absolute;
-   width:264px;
+   width:308px;
    z-index:999;
    margin: -80px 0px 0px 0px;
    cursor: pointer;
@@ -1171,9 +1176,11 @@ Counter Part CSS
     background:var(--imgbg) ;
 }
 .Staff_slider .slick-dots {
-    margin-left: 460px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 15px;
     overflow: hidden;
+    width: 12%;
 }
 
 .Staff_slider .slick-dots li {
