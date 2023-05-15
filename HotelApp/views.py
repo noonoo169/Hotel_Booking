@@ -26,7 +26,7 @@ def userLogin(request):
         author  = models.Authorregis.objects.filter(Email=User_email, Password=User_password).first()
         if my_user is not None :
             login(request, my_user)
-            return render(request,'admin/AdminHome.html')
+            return redirect('adminHome')
         elif author:
             request.session['user_id'] = author.Id
             Name = author.Fname
@@ -69,8 +69,6 @@ def adminHome(request):
     if request.user.is_authenticated:
         data = models.Online_Booking.objects.all().order_by('-Id')
         return render(request,'admin/AdminHome.html',{'data':data})
-    return redirect('userLogin')
-
 def createOnlineBooking(request):
     if 'user_id' in request.session:
         if request.method == 'POST':
