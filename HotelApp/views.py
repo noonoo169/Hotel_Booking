@@ -5,6 +5,7 @@ from .import models
 from .forms import Online_Booking_form,offline_Booking_form,Add_Room_form
 from django.http import HttpResponse
 
+
 # Create your views here.
 def home(request):  
     if 'user_id' in request.session:
@@ -26,11 +27,10 @@ def userLogin(request):
         author  = models.Authorregis.objects.filter(Email=User_email, Password=User_password).first()
         if my_user is not None :
             login(request, my_user)
-            return render(request,'admin/AdminHome.html')
+            return redirect("adminHome")
         elif author:
             request.session['user_id'] = author.Id
-            Name = author.Fname
-            return render(request,'Home.html', {'Name': Name} )
+            return redirect("home")
         else:
             messages.success(request, 'user name and password not matching')
             return render(request,'Login.html')
@@ -69,8 +69,6 @@ def adminHome(request):
     if request.user.is_authenticated:
         data = models.Online_Booking.objects.all().order_by('-Id')
         return render(request,'admin/AdminHome.html',{'data':data})
-    return redirect('userLogin')
-
 def createOnlineBooking(request):
     if 'user_id' in request.session:
         if request.method == 'POST':
@@ -120,9 +118,11 @@ def onlineBookingInfor(request):
 
 def editOnlineBooking(request,id):
     data = models.Online_Booking.objects.get(Id=id)
+    print(id)
     if request.method == 'POST':
+        customer = models.Authorregis.objects.get(Id = request.POST.get('Customer_Id'))
+        data.Customer = customer
         data = Online_Booking_form(request.POST, request.FILES, instance=data)
-        print(data.Meta.model.Id)
         if data.is_valid():
             data.save()
             return redirect('onlineBookingInfor')
@@ -136,7 +136,7 @@ def deleteOnlineBooking(request,id):
     data.delete()
     return redirect('onlineBookingInfor')
 
-def AddCustomer(request):
+def addCustomer(request):
     if request.method == 'POST':
         isValidRoom = models.Add_Room.objects.filter(Is_Available=True, Room_Type=request.POST.get('Select_Room')).first()
         if isValidRoom:
@@ -167,24 +167,22 @@ def AddCustomer(request):
     data = models.Offline_Booking.objects.all().order_by('-Id')
     return render(request,'admin/AddCustomer.html',{'data': data})
 
-def AllCustomer(request):
+def allCustomer(request):
     if request.method == 'POST':
         value = request.POST.get('search')
-        data = models.Offline_Booking.objects.filter(First_Name=value) or models.Offline_Booking.objects.filter(Select_Room=value)
+        if value == "":
+            data = models.Offline_Booking.objects.all().order_by('-First_Name')
+        else:
+            data = models.Offline_Booking.objects.filter(First_Name=value) or models.Offline_Booking.objects.filter(Select_Room=value)
         return render(request, 'admin/AllCustomer.html', {"data": data})
     data = models.Offline_Booking.objects.all().order_by('-First_Name')
     return render(request,'admin/AllCustomer.html',{'data': data})
 
-def EditCustomer(request,id):
+def editCustomer(request,id):
     data = models.Offline_Booking.objects.get(Id=id)
     if request.method == 'POST':
         data = offline_Booking_form(request.POST, request.FILES, instance=data)
         if data.is_valid():
-            # upload_image = request.FILES.get('Upload_Image')
-            # fname = upload_image.name
-            # with open('E:/Project2/HotelManagementSystem/static/Allfiles/Media/' + fname, 'wb+') as location:
-            #     for ch in upload_image.chunks():
-            #         location.write(ch)
             data.save()
             return redirect('AllCustomer')
         else:
@@ -203,16 +201,9 @@ def AllCustpage_Delete(request,id):
     data.delete()
     return redirect('AllCustomer')
 
-
-
-
 def addRoom(request):
     if request.method == 'POST':
         upload_image = request.FILES.get('Room_Image')
-        # fname = upload_image.name
-        # with open('E:/Project2/HotelManagementSystem/static/Allfiles/Media/' + fname, 'wb+') as location:
-        #     for ch in upload_image.chunks():
-        #         location.write(ch)
         if request.method == 'POST':
             Data = models.Add_Room()
             Data.Room_Number = request.POST.get('Room_Number')
@@ -232,7 +223,7 @@ def addRoom(request):
     data = models.Add_Room.objects.all().order_by('-Room_Number')
     return render(request, 'admin/AddRoom.html',{'data': data})
 
-def Add_Room_Search(request):
+def addRoomSearch(request):
     if request.method == 'POST':
         Serch = request.POST.get('serch')
         print(Serch)
@@ -249,51 +240,55 @@ def editRoom(request,id):
     if request.method == 'POST':
         data = Add_Room_form(request.POST, request.FILES, instance=data)
         if data.is_valid():
-            # upload_image = request.FILES.get('Room_Image')
-            # fname = upload_image.name
-            # with open('E:/Project2/HotelManagementSystem/static/Allfiles/Media/' + fname, 'wb+') as location:
-            #     for ch in upload_image.chunks():
-            #         location.write(ch)
             data.save()
             return redirect('allRoom')
         else:
             return HttpResponse("Failed")
 
-
-    select = data.Room_Type
-    if select == 'Single':
-        select = 1
-    elif select == 'Double':
-        select = 2
-    elif select == 'Family':
-        select = 3
-    elif select == 'Luxury':
-        select = 4
-    elif select == 'Luxury':
-        select = 4
+    isAvailable = data.Is_Available
+    if isAvailable == True:
+        isAvailable = 1
     else:
-        select = 5
+        isAvailable = 0
 
-
-    select = data.Room_Floor
-    if select == 'Floor_First':
-        select = 1
-    elif select == 'Floor_Second':
-        select = 2
-    elif select == 'Floor_Third':
-        select = 3
-    elif select == 'Floor_Forth':
-        select = 4
+    roomType = data.Room_Type
+    if roomType == 'Single':
+        roomType = 1
+    elif roomType == 'Double':
+        roomType = 2
+    elif roomType == 'Family':
+        roomType = 3
+    elif roomType == 'Luxury':
+        roomType = 4
+    elif roomType == 'Delux':
+        roomType = 5
     else:
-        select = 5
+        roomType = 6
 
-    return render(request,'admin/EditRooms.html',{'data': data,"select": select})
+
+    floor = data.Room_Floor
+    if floor == 'Floor_First':
+        floor = 1
+    elif floor == 'Floor_Second':
+        floor = 2
+    elif floor == 'Floor_Third':
+        floor = 3
+    else:
+        floor = 4
+
+    return render(request,'admin/EditRoom.html',{'data': data,
+                                                 "isAvailable": isAvailable,
+                                                 "roomType": roomType,
+                                                 "floor": floor
+                                                 })
 
 def allRoom(request):
     if request.method == 'POST':
         Serch = request.POST.get('search')
-        print(Serch)
-        data = models.Add_Room.objects.filter(Room_Number=Serch) or models.Add_Room.objects.filter(Room_Type=Serch)
+        if Serch == "":
+            data = models.Add_Room.objects.all().order_by('-Id')
+        else:
+            data = models.Add_Room.objects.filter(Room_Number=Serch) or models.Add_Room.objects.filter(Room_Type=Serch)
         return render(request, 'admin/AllRooms.html',{"data": data})
 
     data = models.Add_Room.objects.all().order_by('-Id')

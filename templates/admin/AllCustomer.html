@@ -12,7 +12,6 @@
     <div class="right_col" role="main">
         <div class="row">
             <div class ="col-lg-12" style="background:gray;">
-
                  <div class ="col-lg-6">
                      <div class="add_student">
                         <h2 >All Customers</h2>
@@ -20,7 +19,7 @@
                  </div>
                 <div class ="col-lg-6">
                     <div class="add_student_link">
-                        <a href="{% url 'adminHome' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="{% url 'AddCustomer' %}">Add Customers</a>
+                        <a href="{% url 'adminHome' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="{% url 'addCustomer' %}">Add Customers</a>
                      </div>
                  </div>
             </div>
@@ -39,7 +38,7 @@
                               <div class="col-lg-12">
                                   <div class="table_tilte">
                                       <h4>All Customers list</h4>
-                                      <a href="{% url 'AddCustomer' %}"><i class="fas fa-plus"></i> Add New</a>
+                                      <a href="{% url 'addCustomer' %}"><i class="fas fa-plus"></i> Add New</a>
                                   </div>
                               </div>
                               <div class="col-lg-12">
@@ -58,7 +57,7 @@
                                             </div>
                                           <div class="table_info_btn2">
                                              <div class="form-group">
-                                               <input type="search" name="search" class="form-control" placeholder="Name or Room Type" required>
+                                               <input type="search" name="search" class="form-control" placeholder="Name or Room Type" >
                                            </div>
                                          </div>
                                         <div class="table_info_btn3">
@@ -113,7 +112,7 @@
                                           <td>{{i.Room_Number}}</td>
                                           <td class="action">
                                                    <a  href="{% url 'AllCustpage_Delete' id=i.Id%}">Delete</a>
-                                                   <a  href="{% url 'EditCustomer' id=i.Id%}">Update</a>
+                                                   <a  href="{% url 'editCustomer' id=i.Id%}">Update</a>
                                           </td>
                                        </tr>
                                         {%endfor%}
@@ -174,7 +173,7 @@
                                           <div class="Grid_view_top">
                                               <p> <span class="hover_icon"><i class="fas fa-ellipsis-h"></i></span>
                                                 <div class="del_Edit">
-                                                   <a href="{% url 'EditCustomer' id=i.Id%}"><i class="fas fa-user-edit"></i></a>
+                                                   <a href="{% url 'editCustomer' id=i.Id%}"><i class="fas fa-user-edit"></i></a>
                                                    <a href="{% url 'AllCustpage_Delete' id=i.Id%}"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                               </p>
