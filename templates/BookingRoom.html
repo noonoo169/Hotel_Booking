@@ -72,10 +72,10 @@
                           {% csrf_token %}
                         <div class="from_info1">
                            <div class="form-group1"> 
-                              <input type="text" name="Check_in" class="Check_in form-control"  placeholder="Check in"  required/>
+                              <input type="datetime-local" name="Check_in" class="form-control"  placeholder="Check in"  required/>
                            </div>
                            <div class="form-group1">
-                              <input type="text"  name="Check_out" class="Check_out form-control" placeholder="Check out"  required/>
+                              <input type="datetime-local"  name="Check_out" class="form-control" placeholder="Check out"  required/>
                            </div>
                            <div class="form-group1">
                                <select class="form-control" name="ADULT">

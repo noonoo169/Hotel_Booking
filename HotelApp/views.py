@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from .import models
 from .forms import Online_Booking_form,offline_Booking_form,Add_Room_form
 from django.http import HttpResponse
-
+from datetime import datetime
 
 # Create your views here.
 def home(request):  
@@ -69,6 +69,8 @@ def adminHome(request):
     if request.user.is_authenticated:
         data = models.Online_Booking.objects.all().order_by('-Id')
         return render(request,'admin/AdminHome.html',{'data':data})
+    return redirect("userLogin")
+
 def createOnlineBooking(request):
     if 'user_id' in request.session:
         if request.method == 'POST':
@@ -77,7 +79,8 @@ def createOnlineBooking(request):
                 MyData = models.Online_Booking()
                 MyData.Id = request.POST.get('Id')
                 customer = models.Authorregis.objects.get(Id=request.session['user_id'])
-                MyData.Customer_id = customer.Id
+                MyData.Customer = customer
+                # MyData.Customer_id = customer.Id
                 MyData.Check_in = request.POST.get('Check_in')
                 MyData.Check_out = request.POST.get('Check_out')
                 MyData.First_Name = request.POST.get('First_Name')
@@ -106,6 +109,15 @@ def createOnlineBooking(request):
             return render(request,'BookingRoom.html',{'Room':Room})
     return redirect('userLogin')
 
+def customerEditOnlineBooking(request):
+    id = request.session['user_id'] 
+    data = models.Online_Booking()
+    for i in models.Online_Booking.objects.all():
+        if i.Customer.Id == id:
+            data = i
+            break
+    return render(request,'CustomerEditOnlineBooking.html',{'data':data})
+
 def onlineBookingInfor(request):
     if request.method == 'POST':
         value = request.POST.get('search')
@@ -118,10 +130,7 @@ def onlineBookingInfor(request):
 
 def editOnlineBooking(request,id):
     data = models.Online_Booking.objects.get(Id=id)
-    print(id)
-    if request.method == 'POST':
-        customer = models.Authorregis.objects.get(Id = request.POST.get('Customer_Id'))
-        data.Customer = customer
+    if request.method == 'POST':      
         data = Online_Booking_form(request.POST, request.FILES, instance=data)
         if data.is_valid():
             data.save()
@@ -160,7 +169,7 @@ def addCustomer(request):
             Data.save()
 
             models.Add_Room.objects.filter(Id=isValidRoom.Id).update(Is_Available=False)
-            return redirect('AddCustomer')
+            return redirect('addCustomer')
         else:
             return HttpResponse("No more room for this type")
 
@@ -184,7 +193,7 @@ def editCustomer(request,id):
         data = offline_Booking_form(request.POST, request.FILES, instance=data)
         if data.is_valid():
             data.save()
-            return redirect('AllCustomer')
+            return redirect('allCustomer')
         else:
             return HttpResponse("Failed")
     return render(request,'admin/EditCustomer.html',{'data': data})
@@ -193,13 +202,13 @@ def AddCustpage_Delete(request,id):
     data = models.Offline_Booking.objects.get(Id=id)
     models.Add_Room.objects.filter(Room_Number=data.Room_Number).update(Is_Available=True)
     data.delete()
-    return redirect('AddCustomer')
+    return redirect('addCustomer')
 
 def AllCustpage_Delete(request,id):
     data = models.Offline_Booking.objects.get(Id=id)
     models.Add_Room.objects.filter(Room_Number=data.Room_Number).update(Is_Available=True)
     data.delete()
-    return redirect('AllCustomer')
+    return redirect('allCustomer')
 
 def addRoom(request):
     if request.method == 'POST':
@@ -299,3 +308,92 @@ def AllRooms_Delete(request,id):
     data.delete()
     return redirect('allRoom')
 
+def allOrderRoom(request):
+    if request.method == 'POST':
+        value = request.POST.get('search')
+        if value == "":
+            offlineBooking = models.Offline_Booking.objects.all().order_by('-First_Name')
+            onlineBooking = models.Online_Booking.objects.all().order_by('-First_Name')
+        else:
+            offlineBooking = models.Offline_Booking.objects.filter(First_Name=value) or models.Offline_Booking.objects.filter(Select_Room=value)
+            onlineBooking = models.Online_Booking.objects.filter(First_Name=value) or models.Online_Booking.objects.filter(Select_Room=value)
+        return render(request,'admin/OrderedRoom.html',{'offlineBooking': offlineBooking,
+                                                    'onlineBooking': onlineBooking
+                                                    })
+    offlineBooking = models.Offline_Booking.objects.all().order_by('-First_Name')
+    onlineBooking = models.Online_Booking.objects.all().order_by('-First_Name')
+    return render(request,'admin/OrderedRoom.html',{'offlineBooking': offlineBooking,
+                                                    'onlineBooking': onlineBooking
+                                                    })
+
+def payRoom(request, id, mt):
+    if mt == 'off':
+        data = models.Offline_Booking.objects.get(Id=id)
+        room = models.Add_Room.objects.get(Room_Number=data.Room_Number)
+        models.Add_Room.objects.filter(Room_Number=data.Room_Number).update(Is_Available=True)
+        orderedRoom = models.OrderRoom()
+        orderedRoom.Check_in = data.Check_in
+        orderedRoom.Check_out = data.Check_out
+        orderedRoom.First_Name = data.First_Name
+        orderedRoom.Last_Name = data.Last_Name
+        orderedRoom.Email = data.Email
+        orderedRoom.Phone_Number = data.Phone_Number
+        orderedRoom.Personal_Identity = data.Personal_Identity
+        orderedRoom.Address = data.Address
+        orderedRoom.Country = data.Country
+        orderedRoom.ADULT = data.ADULT
+        orderedRoom.CHILDREN = data.CHILDREN
+        orderedRoom.Select_Room = data.Select_Room
+        orderedRoom.Room_Number = data.Room_Number
+        checkIn = datetime.strptime(data.Check_in, '%Y-%m-%dT%H:%M')
+        checkOut = datetime.strptime(data.Check_out, '%Y-%m-%dT%H:%M')
+        t_date = (checkOut - checkIn).total_seconds() /3600/24
+        orderedRoom.Total_Price = round(t_date,2) * int(room.Room_Price)
+        orderedRoom.save()
+        data.delete()
+    if mt == 'on':
+        data = models.Online_Booking.objects.get(Id=id)
+        room = models.Add_Room.objects.get(Room_Number=data.Room_Number)
+        models.Add_Room.objects.filter(Room_Number=data.Room_Number).update(Is_Available=True)
+        orderedRoom = models.OrderRoom()
+        orderedRoom.Check_in = data.Check_in
+        orderedRoom.Check_out = data.Check_out
+        orderedRoom.First_Name = data.First_Name
+        orderedRoom.Last_Name = data.Last_Name
+        orderedRoom.Email = data.Email
+        orderedRoom.Phone_Number = data.Phone_Number
+        orderedRoom.Personal_Identity = data.Personal_Identity
+        orderedRoom.Address = data.Address
+        orderedRoom.Country = data.Country
+        orderedRoom.ADULT = data.ADULT
+        orderedRoom.CHILDREN = data.CHILDREN
+        orderedRoom.Select_Room = data.Select_Room
+        orderedRoom.Room_Number = data.Room_Number
+        checkIn = datetime.strptime(data.Check_in, '%Y-%m-%dT%H:%M')
+        checkOut = datetime.strptime(data.Check_out, '%Y-%m-%dT%H:%M')
+        t_date = (checkOut - checkIn).total_seconds() /3600/24
+        orderedRoom.Total_Price = round(t_date,2) * int(room.Room_Price)
+        orderedRoom.save()
+        data.delete()
+    return redirect("allOrderRoom")
+
+def showRevenue(request):
+    total = 0
+    if request.method == 'POST':
+        doneDate = request.POST.get('search')
+        if doneDate == "":
+            data = models.OrderRoom.objects.all()
+            for i in data:
+                total += float(i.Total_Price)
+            return render(request,'admin/Revenue.html',{'data': data, 'total': total})
+        else:
+            doneDate = datetime.strptime(doneDate, "%Y-%m-%d")
+            data = models.OrderRoom.objects.filter(Date__gte= doneDate)
+            for i in data:
+                total += float(i.Total_Price)
+            return render(request,'admin/Revenue.html',{'data': data, 'total': total})
+            
+    data = models.OrderRoom.objects.all()
+    for i in data:
+        total += float(i.Total_Price)
+    return render(request,'admin/Revenue.html',{'data': data, 'total': total})

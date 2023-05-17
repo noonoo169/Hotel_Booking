@@ -13,6 +13,7 @@ urlpatterns = [
     path('all_admin', views.all_admin),
     path('adminHome', views.adminHome, name='adminHome'),
     path('onlineBookingInfor', views.onlineBookingInfor, name='onlineBookingInfor'),
+    path('customerEditOnlineBooking', views.customerEditOnlineBooking, name='customerEditOnlineBooking'),
     path('editOnlineBooking/<id>', views.editOnlineBooking, name='editOnlineBooking'),
     path('addCustomer', views.addCustomer, name='addCustomer'),
     path('allCustomer', views.allCustomer, name='allCustomer'),
@@ -27,4 +28,7 @@ urlpatterns = [
     path('editRoom/<id>', views.editRoom, name='editRoom'),
     path('allRoom', views.allRoom, name='allRoom'),
     path('AllRooms_Delete/<id>', views.AllRooms_Delete, name='AllRooms_Delete'),
+    path('allOrderRoom', views.allOrderRoom, name='allOrderRoom'),
+    path('payRoom/<id>/<mt>', views.payRoom, name='payRoom'),
+    path('showRevenue', views.showRevenue, name='showRevenue'),
 ]

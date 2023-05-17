@@ -1,0 +1,119 @@
+{%extends 'admin/AdminIncludeAll.html'%}
+{% block title %}
+ All Customers page
+{% endblock %}
+  {% block  pagecontant %}
+  {% load static %}
+         <!-- page content -->
+      <!--************************************
+			Table part start
+		*************************************-->
+
+    <div class="right_col" role="main">
+        <!-- <div class="row">
+            <div class ="col-lg-12" style="background:gray;">
+                 <div class ="col-lg-6">
+                     <div class="add_student">
+                        <h2 >All Customers</h2>
+                     </div>
+                 </div>
+                <div class ="col-lg-6">
+                    <div class="add_student_link">
+                        <a href="{% url 'adminHome' %}">Home</a> <i class="fas fa-angle-right"></i> <a href="{% url 'addCustomer' %}">Add Customers</a>
+                     </div>
+                 </div>
+            </div>
+        </div> -->
+          <div class="row" style="margin-top:10px;">
+              <div class="col-lg-12">
+                  <div class="table_menu">
+                      <!-- Nav tabs -->
+                        <!-- <ul class="nav nav-tabs" role="tablist">
+                          <li class="active"><a href="#List_View" role="tab" data-toggle="tab">List View</a></li>
+                          <li ><a href="#Grid_view" role="tab" data-toggle="tab">Grid view</a></li>
+                        </ul> -->
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="List_View">
+                              <div class="col-lg-12">
+                                  <div class="table_tilte">
+                                      <h4>Revenue Report</h4>
+                                  </div>
+                              </div>
+                              <div class="col-lg-12">
+                                  <div class="table_info11">
+                                      <form action="" method="post" enctype="multipart/form-data">
+                                          {% csrf_token %}
+                                          <div class="form-group table_info_btn">
+                                               <label class="form-label">Show</label>
+                                               <select class="form-control">
+                                                   <option value="Class">15</option>
+                                                   <option value="html">25</option>
+                                                   <option value="css">50</option>
+                                                   <option value="javascript">75</option>
+                                                   <option value="angular">100</option>
+                                               </select>
+                                            </div>
+                                          <div class="table_info_btn2">
+                                             <div class="form-group">
+                                               <input type="date" name="search" class="form-control" placeholder="Enter day|month|year" >
+                                           </div>
+                                         </div>
+                                        <div class="table_info_btn3">
+                                            <div class="form_btn2">
+                                               <button type="submit">Search</button>
+                                            </div>
+                                         </div>
+                                      </form>
+                                  </div>
+                              </div>
+                              <div class="col-lg-12 form_table1" style="width: 50%;" >
+                                      <div id="example" class="example table-wrapper-scroll-y my-custom-scrollbar">
+                                        <table  class="table-bordered table-striped" style="width: 100%;">
+                                              <tr>
+                                                <th>Id</th>
+                                                <th>Customer Name</th>
+                                                <th>Date</th>
+                                                <th>Total Price</th>
+                                              </tr>
+
+                                            {%if data %}
+
+                                        {% for i in data %}
+                                           <tr>
+                                          <td>{{i.Id}}</td>
+                                          <td>{{i.First_Name}}</td>
+                                          <td>{{i.Date}}</td>
+                                          <td>{{i.Total_Price}}</td>
+                                       </tr>
+                                        {%endfor%}
+
+                                        {% endif %}
+                                        </table>
+                                    </div>
+                              </div>
+                            <div class="col-lg-12 form_table1" style="width: 30%; margin-left: 30px;" >
+                                <div id="example" class="example table-wrapper-scroll-y my-custom-scrollbar" style="height: 50%;">
+                                  <table  class="table-bordered table-striped" style="width: 100%;">
+                                        <tr>
+                                          <th>Total</th>
+                                        </tr>
+
+                                      {%if total %}
+                                     <tr>
+                                    <td>{{total}}</td>
+                                 </tr>
+
+                                  {% endif %}
+                                  </table>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          </div>
+                        </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+  {% endblock %}

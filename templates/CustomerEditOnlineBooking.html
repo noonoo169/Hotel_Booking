@@ -1,0 +1,115 @@
+{% block title %}
+Online Booking page
+       {% endblock %}
+  {% block  pagecontant %}
+         <!-- page content -->
+
+          <!--************************************
+			form part start
+		*************************************-->
+    {% load static %}
+   <link rel="stylesheet" href="{%static 'static_files/css/style.css'%}">
+    <link rel="stylesheet" href="{%static 'Allfiles/vendors/bootstrap/dist/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static 'Allfiles/vendors/iCheck/skins/flat/green.css'%}">
+    <link rel="stylesheet" href="{%static 'Allfiles/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css'%}">
+    <link rel="stylesheet" href="{%static 'Allfiles/build/css/custom.css'%}">
+            
+    <div class="right_col" role="main">
+        <div class="row">
+            <div class ="col-lg-12" style="background:gray;">
+                 <div class ="col-lg-6">
+                     <div class="add_student">
+                        <h2 >Online Booking Customer</h2>
+                     </div>
+                 </div>
+            </div>
+            <div class="edit_stu_form" >
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {%csrf_token%}
+                        <div class="col-lg-12">
+                          <div class="form-group edit_form">
+                            <label class="form-label">Id</label>
+                            <input type="text" name="Id" class="form-control" value={{data.Id}} readonly >
+                            </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Customer Id</label>
+                            <input type="text" name="Customer_Id" class="form-control" value={{data.Customer.Id}} readonly >
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Personal Identity</label>
+                            <input type="text"  name="Personal_Identity" class="form-control" value={{data.Personal_Identity}} readonly>
+                          </div>
+
+                          <div class="form-group edit_form">
+                            <label class="form-label">Check In</label>
+                            <input type="datetime-local" name="Check_in" class="form-control" placeholder="Check In" value={{data.Check_in}} readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Check Out</label>
+                            <input type="datetime-local" name="Check_out" class="form-control" placeholder="Check Out" value="{{data.Check_out}}" readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">First Name</label>
+                            <input type="text"  name="First_Name" class="form-control" value={{data.First_Name}} readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Last Name</label>
+                            <input type="text"  name="Last_Name" class="form-control" value={{data.Last_Name}} readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Email</label>
+                            <input type="text"  name="Email" class="form-control" value={{data.Email}} readonly> 
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text"  name="Phone_Number" class="form-control" value={{data.Phone_Number}} readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">ADULT</label>
+                            <input type="text"  name="ADULT" class="form-control" value={{data.ADULT}} readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">CHILDREN</label>
+                            <input type="text"  name="CHILDREN" class="form-control" value={{data.CHILDREN}} readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Select Room</label>
+                            <input type="text"  name="Select_Room" class="form-control" value="{{data.Select_Room}}" readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Room Number</label>
+                            <input type="text"  name="Room_Number" class="form-control" value={{data.Room_Number}} readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Upload Image</label>
+                            <input type="file" name="Image" class="form-control">
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Country</label>
+                            <input type="text"  name="Country" class="form-control" value="{{ data.Country }}" readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Address</label>
+                            <input type="text"  name="Address" class="form-control" value="{{ data.Address }}" readonly>
+                          </div>
+                          <div class="form-group edit_form">
+                            <label class="form-label">Avatar</label>
+                            <img src="{{ data.Image.url }}" alt="Image" style="margin: 0px 20px 0px">
+                          </div>
+                        </div>
+
+                    <div class="col-lg-12">
+                        <div class="edit_btn">
+                           <button type="submit">Update</button>
+                        </div>
+                        <div class="edit_btn">
+                            <button type="reset">Clear</button>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+
+   {% endblock %}
