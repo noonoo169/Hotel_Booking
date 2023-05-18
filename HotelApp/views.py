@@ -175,7 +175,7 @@ def addCustomer(request):
 
     data = models.Offline_Booking.objects.all().order_by('-Id')
     return render(request,'admin/AddCustomer.html',{'data': data})
-
+#getAllCustomer
 def allCustomer(request):
     if request.method == 'POST':
         value = request.POST.get('search')
@@ -376,24 +376,24 @@ def payRoom(request, id, mt):
         orderedRoom.save()
         data.delete()
     return redirect("allOrderRoom")
-
+#show total Revenue
 def showRevenue(request):
-    total = 0
+    totalMoney = 0
     if request.method == 'POST':
         doneDate = request.POST.get('search')
         if doneDate == "":
             data = models.OrderRoom.objects.all()
             for i in data:
-                total += float(i.Total_Price)
-            return render(request,'admin/Revenue.html',{'data': data, 'total': total})
+                totalMoney += float(i.Total_Price)
+            return render(request,'admin/Revenue.html',{'data': data, 'total': totalMoney})
         else:
             doneDate = datetime.strptime(doneDate, "%Y-%m-%d")
             data = models.OrderRoom.objects.filter(Date__gte= doneDate)
             for i in data:
-                total += float(i.Total_Price)
-            return render(request,'admin/Revenue.html',{'data': data, 'total': total})
+                totalMoney += float(i.Total_Price)
+            return render(request,'admin/Revenue.html',{'data': data, 'total': totalMoney})
             
     data = models.OrderRoom.objects.all()
     for i in data:
-        total += float(i.Total_Price)
-    return render(request,'admin/Revenue.html',{'data': data, 'total': total})
+        totalMoney += float(i.Total_Price)
+    return render(request,'admin/Revenue.html',{'data': data, 'total': totalMoney})

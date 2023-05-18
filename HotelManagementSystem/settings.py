@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'HotelManagementSystem.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':  'hotel_booking',
+        'NAME':  'demo1',
         'USER': 'root',
-        'PASSWORD': '1609',
+        'PASSWORD': '0983801656',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
