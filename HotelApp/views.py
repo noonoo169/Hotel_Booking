@@ -111,11 +111,12 @@ def createOnlineBooking(request):
 
 def customerEditOnlineBooking(request):
     id = request.session['user_id'] 
-    data = models.Online_Booking()
-    for i in models.Online_Booking.objects.all():
-        if i.Customer.Id == id:
-            data = i
-            break
+    # data = models.Online_Booking()
+    # for i in models.Online_Booking.objects.all():
+    #     if i.Customer.Id == id:
+    #         data = i
+    #         break
+    data = models.Online_Booking.objects.filter(Customer__Id = id)
     return render(request,'CustomerEditOnlineBooking.html',{'data':data})
 
 def onlineBookingInfor(request):

@@ -1,115 +1,97 @@
-{% block title %}
-Online Booking page
-       {% endblock %}
-  {% block  pagecontant %}
-         <!-- page content -->
 
-          <!--************************************
-			form part start
-		*************************************-->
+
     {% load static %}
-   <link rel="stylesheet" href="{%static 'static_files/css/style.css'%}">
     <link rel="stylesheet" href="{%static 'Allfiles/vendors/bootstrap/dist/css/bootstrap.min.css'%}">
-    <link rel="stylesheet" href="{%static 'Allfiles/vendors/iCheck/skins/flat/green.css'%}">
-    <link rel="stylesheet" href="{%static 'Allfiles/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css'%}">
+    <!-- Font Awesome -->
+     <link rel="stylesheet" href="{%static 'Allfiles/Css/fontawesome.min.css'%}">
+     <link rel="stylesheet" href="{%static 'Allfiles/vendors/font-awesome/css/font-awesome.min.css'%}">
+    <!-- NProgress -->
+     <link rel="stylesheet" href="{%static 'Allfiles/vendors/nprogress/nprogress.css'%}">
+    <!-- iCheck -->
+     <link rel="stylesheet" href="{%static 'Allfiles/vendors/iCheck/skins/flat/green.css'%}">
+
+    <!-- bootstrap-progressbar -->
+     <link rel="stylesheet" href="{%static 'Allfiles/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css'%}">
+    <!-- JQVMap -->
+     <link rel="stylesheet" href="{%static 'Allfiles/vendors/jqvmap/dist/jqvmap.min.css'%}">
+    <!-- bootstrap-daterangepicker -->
+     <link rel="stylesheet" href="{%static 'Allfiles/vendors/bootstrap-daterangepicker/daterangepicker.css'%}">
+    <!-- Custom Theme Style -->
     <link rel="stylesheet" href="{%static 'Allfiles/build/css/custom.css'%}">
-            
+    {% block  pagecontant %}
+
     <div class="right_col" role="main">
-        <div class="row">
-            <div class ="col-lg-12" style="background:gray;">
-                 <div class ="col-lg-6">
-                     <div class="add_student">
-                        <h2 >Online Booking Customer</h2>
-                     </div>
-                 </div>
-            </div>
-            <div class="edit_stu_form" >
-                <form method="POST" action="" enctype="multipart/form-data">
-                    {%csrf_token%}
-                        <div class="col-lg-12">
-                          <div class="form-group edit_form">
-                            <label class="form-label">Id</label>
-                            <input type="text" name="Id" class="form-control" value={{data.Id}} readonly >
+        <div class="row" style="margin-top:10px;">
+            <div class="col-lg-12">
+                <div class="table_menu">
+                    <!-- Nav tabs -->
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="List_View">
+                            <div class="col-lg-12">
+                                <div class="table_tilte">
+                                    <h4>Online Booking Customers List</h4>
+                                </div>
                             </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Customer Id</label>
-                            <input type="text" name="Customer_Id" class="form-control" value={{data.Customer.Id}} readonly >
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Personal Identity</label>
-                            <input type="text"  name="Personal_Identity" class="form-control" value={{data.Personal_Identity}} readonly>
-                          </div>
+                            
+                            <div class="col-lg-12 form_table1" >
+                                    <div id="example" class="example table-wrapper-scroll-y my-custom-scrollbar">
+                                      <table  class="table-bordered table-striped">
+                                        <tr>
+                                          <th>Id</th>
+                                          <th>Customer Id</th>
+                                          <th>Check In</th>
+                                          <th>Check Out</th>
+                                          <th>First Name</th>
+                                          <th>Last Name</th>
+                                          <th>Email</th>
+                                          <th>Phone Number</th>
+                                          <th>Address</th>
+                                          <th>Country</th>
+                                          <th>Personal Identity</th>
+                                          <th>Upload Image</th>
+                                          <th>ADULT</th>
+                                          <th>CHILDREN</th>
+                                          <th>Select Room</th>
+                                          <th>Room Number</th>
+                                          <th>Action</th>
+                                        </tr>
+                                          {%if data %}
 
-                          <div class="form-group edit_form">
-                            <label class="form-label">Check In</label>
-                            <input type="datetime-local" name="Check_in" class="form-control" placeholder="Check In" value={{data.Check_in}} readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Check Out</label>
-                            <input type="datetime-local" name="Check_out" class="form-control" placeholder="Check Out" value="{{data.Check_out}}" readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">First Name</label>
-                            <input type="text"  name="First_Name" class="form-control" value={{data.First_Name}} readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Last Name</label>
-                            <input type="text"  name="Last_Name" class="form-control" value={{data.Last_Name}} readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Email</label>
-                            <input type="text"  name="Email" class="form-control" value={{data.Email}} readonly> 
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Phone Number</label>
-                            <input type="text"  name="Phone_Number" class="form-control" value={{data.Phone_Number}} readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">ADULT</label>
-                            <input type="text"  name="ADULT" class="form-control" value={{data.ADULT}} readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">CHILDREN</label>
-                            <input type="text"  name="CHILDREN" class="form-control" value={{data.CHILDREN}} readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Select Room</label>
-                            <input type="text"  name="Select_Room" class="form-control" value="{{data.Select_Room}}" readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Room Number</label>
-                            <input type="text"  name="Room_Number" class="form-control" value={{data.Room_Number}} readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Upload Image</label>
-                            <input type="file" name="Image" class="form-control">
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Country</label>
-                            <input type="text"  name="Country" class="form-control" value="{{ data.Country }}" readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Address</label>
-                            <input type="text"  name="Address" class="form-control" value="{{ data.Address }}" readonly>
-                          </div>
-                          <div class="form-group edit_form">
-                            <label class="form-label">Avatar</label>
-                            <img src="{{ data.Image.url }}" alt="Image" style="margin: 0px 20px 0px">
-                          </div>
-                        </div>
+                                      {% for i in data %}
+                                       <tr>
+                                        <td>{{i.Id}}</td>
+                                        <td>{{i.Customer.Id}}</td>
+                                        <td>{{i.Check_in}}</td>
+                                        <td>{{i.Check_out}}</td>
+                                        <td>{{i.First_Name}}</td>
+                                        <td>{{i.Last_Name}}</td>
+                                        <td>{{i.Email}}</td>
+                                        <td>{{i.Phone_Number}}</td>
+                                        <td>{{i.Address}}</td>
+                                        <td>{{i.Country}}</td>
+                                        <td>{{i.Personal_Identity}}</td>
+                                        <td>{{i.Image}}</td>
+                                        <td>{{i.ADULT}}</td>
+                                        <td>{{i.CHILDREN}}</td>
+                                        <td>{{i.Select_Room}}</td>
+                                        <td>{{i.Room_Number}}</td>
+                                            <td class="action">
+                                                 <a  href="{% url 'deleteOnlineBooking' id=i.Id%}">Delete</a>
+                                            </td>
+                                       </tr>
+                                      {%endfor%}
 
-                    <div class="col-lg-12">
-                        <div class="edit_btn">
-                           <button type="submit">Update</button>
+                                      {% endif %}
+                                      </table>
+                                  </div>
+                            </div>
                         </div>
-                        <div class="edit_btn">
-                            <button type="reset">Clear</button>
-                        </div>
-                    </div>
-                    </form>
+                        
+                      </div>
+                </div>
             </div>
         </div>
-    </div>
-
+  </div>
 
    {% endblock %}
