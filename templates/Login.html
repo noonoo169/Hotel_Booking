@@ -44,7 +44,7 @@
                     <h4>Authority Login into your account</h4>
                   </div>
                 </div>
-                <form method="post" action="" target="_blank">  
+                <form method="post" action="">  
                   {% csrf_token %}
                   <div class="col-lg-10">
                     <div class="login_email">
@@ -56,11 +56,7 @@
                       <input type="password" name="Password" placeholder="Enter Password" required/>
                     </div>
                   </div>
-                  <div class="col-lg-10">
-                    <div class="forget_pass">
-                      <a href="{% url 'forgetPassword' %}" class="">Forgot Password</a>
-                    </div>
-                  </div>
+        
                   <div class="col-lg-10">
                     <div class="login_btn">
                       <button type="submit" class="">Log in</button>

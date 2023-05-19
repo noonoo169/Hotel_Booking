@@ -5326,7 +5326,7 @@ ul.notifications {
 
 
 .Grid_view_top img {
-  margin: -40px 0px 0px 70px;
+  margin-left: 100px;
   clip-path: circle(50% at 50% 50%);
   width: 160px;
   height: 160px;

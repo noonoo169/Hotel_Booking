@@ -251,6 +251,7 @@ h2 {
    background:var(--hovercolor);
    border:2px solid var(--hovercolor);
    padding:10px 15px;
+   
    transition: all linear 0.5s;
   -webkit-transition: all linear 0.5s;
   -moz-transition: all linear 0.5s;
@@ -262,7 +263,6 @@ h2 {
     font-weight:700;
     cursor:pointer;
     text-transform:uppercase;
-    color:var(--maincolor);
 }
 .Booking_button span {
     cursor: pointer;

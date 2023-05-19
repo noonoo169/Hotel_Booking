@@ -32,7 +32,7 @@ def userLogin(request):
             request.session['user_id'] = author.Id
             return redirect("home")
         else:
-            messages.success(request, 'user name and password not matching')
+            messages.success(request, 'User name and password not matching')
             return render(request,'Login.html')
     return render(request,'Login.html')
 

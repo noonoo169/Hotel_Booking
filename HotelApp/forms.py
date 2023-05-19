@@ -8,11 +8,7 @@ class Online_Booking_form(forms.ModelForm):
 
 class offline_Booking_form(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        e = kwargs.pop('e', None)
-        super(models.Online_Booking, self).__init__(*args, **kwargs)
-        if e is not None:
-            self.fields['Customer'] = forms.ModelChoiceField(queryset=e)
+ 
     class Meta:
         model = models.Offline_Booking
         fields = "__all__"

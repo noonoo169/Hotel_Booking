@@ -135,12 +135,12 @@
                      </ul>
                    </div>
                    {% if Name is not None %}
-                   <div class="Booking_button">
-                     <a href="{% url 'userLogout' %}">Logout<span><i class="fas fa-angle-double-right"></i></span></a>
-                    </div>
-                    <div class="Booking_button" style="margin-left: 10px;">
-                     <a href="{% url 'customerEditOnlineBooking' %}">Your Booking<span><i class="fas fa-angle-double-right"></i></span></a>
-                    </div>
+                   
+                     <a class="Booking_button" style="color:white" href="{% url 'userLogout' %}">Logout<span><i class="fas fa-angle-double-right"></i></span></a>
+                    
+                   
+                     <a class="Booking_button" style="margin-left: 10px; color: white" href="{% url 'customerEditOnlineBooking' %}">Your Booking<span><i class="fas fa-angle-double-right"></i></span></a>
+                    
                    {% endif %}
                  </div>
              </nav>

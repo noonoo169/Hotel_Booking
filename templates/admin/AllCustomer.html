@@ -171,17 +171,17 @@
                                     {% for i in data %}
                                      <div class="col-lg-4 Grid_view_pic_info" >
                                           <div class="Grid_view_top">
-                                              <p> <span class="hover_icon"><i class="fas fa-ellipsis-h"></i></span>
+                                              <p><span class="hover_icon"><i class="fas fa-ellipsis-h"></i></span>
                                                 <div class="del_Edit">
                                                    <a href="{% url 'editCustomer' id=i.Id%}"><i class="fas fa-user-edit"></i></a>
                                                    <a href="{% url 'AllCustpage_Delete' id=i.Id%}"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                               </p>
-                                                {%if i.Image %}
+                                              {%if i.Image %}
                                                <img src="{{i.Image.url}}" alt="img">
                                                {% endif %}
-                                              <h4>{{i.First_Name}} {{i.Last_Name}}</h4>
-                                              <h6>{{i.Phone_Number}}</h6>
+                                              <h4>Name: {{i.First_Name}} {{i.Last_Name}}</h4>
+                                              <h6>Contact: {{i.Phone_Number}}</h6>
                                           </div>
                                            <div class="Grid_view_botton">
                                                     <div class="Grid_view_botton_info">
